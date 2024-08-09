@@ -4,7 +4,7 @@ import com.ecommerce.interfaces.exception.domain.OrderException;
 import com.ecommerce.domain.coupon.Coupon;
 import com.ecommerce.domain.coupon.DiscountType;
 import com.ecommerce.domain.order.service.OrderCommandService;
-import com.ecommerce.domain.order.service.external.DummyPlatform;
+import com.ecommerce.application.external.DummyPlatform;
 import com.ecommerce.domain.product.Product;
 import com.ecommerce.domain.product.service.ProductService;
 import com.ecommerce.domain.user.User;
@@ -19,7 +19,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "orders", indexes = {
+        @Index(name = "idx_order_status", columnList = "order_status")
+})
 public class Order {
     @Getter
     @Id
